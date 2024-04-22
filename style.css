@@ -158,8 +158,14 @@ header {
   font-family: var(--rub);
   font-style: bold;
   outline: none;
+  transition: all 0.3s ease;
 }
-
+#add-note:hover {
+  transform: scale(1.2);
+}
+#add-note:active {
+  transform: scale(0.8);
+}
 .mainArt {
   /* background-color: blue; */
   padding: 5px 0px 0px 0px;
@@ -194,6 +200,10 @@ header {
     width: 28%;
     margin: 10px;
   }
+  transition: all 0.3s ease;
+}
+.noteDiv:hover {
+  transform: scale(1.05);
 }
 .title {
   font-family: roboto;
@@ -218,6 +228,12 @@ header {
 
   border-radius: 20px;
   margin: 5px;
+}
+#menu-img {
+  transition: all 0.3s ease-out;
+}
+#menu-img:hover {
+  transform: scale(1.2) rotate(360deg);
 }
 @media (min-width: 1000px) {
   #menu-inp::-webkit-input-placeholder {
@@ -365,3 +381,15 @@ img {
   background-color: #cccccc;
   border-radius: 10px;
 }
+/* 
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+} */

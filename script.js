@@ -1,5 +1,5 @@
 let coo = document.cookie;
-console.log(coo);
+// console.log(coo);
 var addNote = document.getElementById("add-note");
 var mainArt = document.getElementsByClassName("mainDiv")[0];
 addNote.addEventListener("click", addNotes);
@@ -46,7 +46,10 @@ document.getElementById("menu-img").addEventListener("click", function () {
 });
 function addNotes() {
   addTitle;
-  if (document.getElementById("menu-inp").value == "") {
+  if (
+    document.getElementById("menu-inp").value === "" ||
+    document.querySelector(".title") === "theme"
+  ) {
     addTitle();
   } else {
     if (document.getElementById("title-inp").value == "") {
@@ -74,7 +77,7 @@ function addNotes() {
       document.getElementById("menu-inp").value = "";
       document.getElementById("title-inp").value = "";
       let cookies = document.cookie;
-      console.log(cookies);
+      // console.log(cookies);
     }
   }
 }
@@ -125,6 +128,8 @@ function clickAside(num) {
 
 function setTheme(theme) {
   if (theme === "light") {
+    document.cookie =
+      "theme=light; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;";
     document.documentElement.style.setProperty("--note-color", "white");
     document.documentElement.style.setProperty("--color", "#2e2e2e");
     document.documentElement.style.setProperty("--text-color", "#3a3a3a");
@@ -139,6 +144,8 @@ function setTheme(theme) {
     }
     document.getElementById("body").style.backgroundColor = "white";
   } else if (theme === "dark") {
+    document.cookie =
+      "theme=dark; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;";
     document.documentElement.style.setProperty("--note-color", "#242424");
     document.documentElement.style.setProperty("--color", "white");
     document.documentElement.style.setProperty("--text-color", "#dedede");
@@ -156,7 +163,21 @@ function setTheme(theme) {
   }
   document.getElementById("set-theme-div").style.display = "none";
 }
+for (let i = 0; i < document.cookie.split(";").length; i++) {
+  let _theme = document.cookie.split(";")[i].split("=")[1];
+  if (_theme === "dark") {
+    setTheme("dark");
+  } else if (_theme === "light") {
+    setTheme("light");
+  }
+}
 
 function displaySetting() {
   document.getElementById("set-theme-div").style.display = "flex";
 }
+const slement = document.querySelectorAll(".title");
+slement.forEach((element) => {
+  if (element.textContent === "theme") {
+    element.parentElement.parentElement.parentElement.remove();
+  }
+});
