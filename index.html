@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="assets/images/post-it.png">
+    <title>Notes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body id="body">
+
+    <header>
+        <h1 hidden>Notes</h1>
+        <div class="header">
+            <div id="menu">
+                <img id="menu-img" class="icons" src="./assets/images/menu-gra.png" alt="menu">
+                <div class="inputs-div">
+                    <input type="text" placeholder="Title" id="title-inp">
+                    <textarea id="menu-inp" type="text" placeholder="Write About Your day..."></textarea>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <main style="display: flex;">
+        <div id="set-theme-div">
+            <h3>Set the theme</h3>
+            <div onclick="setTheme('dark')" id="theme-set-opt">
+                <img style="margin-left: 10px;" src="./assets/images/palette.png" alt="palette">
+                <p style="margin-left:10px ;">Dark</p>
+            </div>
+            <div onclick="setTheme('light')" id="theme-set-opt">
+                <img style="margin-left: 10px;" src="./assets/images/palette.png" alt="palette">
+                <p style="margin-left:10px ;">Light</p>
+            </div>
+        </div>
+
+
+        <aside class="aside">
+            <div onclick="clickAside(0)" class="aside-div" style="align-items: center;"><img
+                    src="./assets/images/main-menu.png"
+                    style="height: 30px;width: 30px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Notes</p>
+            </div>
+            <div onclick="clickAside(1) , window.open('https://yooopy.github.io')" class="aside-div"
+                style="align-items: center;"><img src="./assets/images/home.png"
+                    style="height: 30px;width: 30px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Home Website</p>
+            </div>
+            <div onclick="clickAside(2), window.open('https://github.com/yooopy')" class="aside-div"
+                style="align-items: center;"><img src="./assets/images/github.png"
+                    style="height: 30px;width: 30px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Github</p>
+            </div>
+            <div onclick="clickAside(3) , displaySetting()" class="aside-div"
+                style="margin-top: auto;align-items: center;">
+                <img src="./assets/images/setting.png"
+                    style="height: 25px;width: 25px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Change Theme</p>
+            </div>
+        </aside>
+        <!--Aside for mobile!-->
+        <div id="aside-mobile">
+            <div onclick="clickAside(0)" class="aside-div2" style="align-items: center;"><img
+                    src="./assets/images/main-menu.png"
+                    style="height: 30px;width: 30px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Notes</p>
+            </div>
+            <div onclick="clickAside(1) , window.open('https://yooopy.github.io')" class="aside-div2"
+                style="align-items: center;"><img src="./assets/images/home.png"
+                    style="height: 30px;width: 30px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Home Website</p>
+            </div>
+            <div onclick="clickAside(2), window.open('https://github.com/yooopy')" class="aside-div2"
+                style="align-items: center;"><img src="./assets/images/github.png"
+                    style="height: 30px;width: 30px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Github</p>
+            </div>
+            <div onclick="clickAside(3) , displaySetting()" class="aside-div2"
+                style="margin-top: auto;align-items: center;">
+                <img src="./assets/images/setting.png"
+                    style="height: 25px;width: 25px;margin-left: 10px;margin-bottom: 20px;margin-top: 20px;">
+                <p style="margin-left: 15px;">Change Theme</p>
+            </div>
+        </div>
+        <article class="art-main">
+
+            <button id="add-note">+</button>
+            <!--        There is notes         -->
+            <article class="mainArt">
+                <div class="mainDiv">
+
+                </div>
+            </article>
+        </article>
+    </main>
+    <script src="./script.js"></script>
+</body>
+
+</html>
