@@ -85,7 +85,7 @@ header {
   resize: none;
   height: 40%;
   transition: all 0.3s ease;
-  width: 93%;
+  width: 90%;
   background-color: var(--note-color);
   color: var(--text-color);
   /* background-color: #cccccc; */
@@ -162,14 +162,14 @@ header {
 
 .mainArt {
   /* background-color: blue; */
-  padding: 5px 10px 10px 10px;
+  padding: 5px 0px 0px 0px;
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
 }
 .mainDiv {
   /* background-color: blue; */
-  padding: 5px 10px 10px 10px;
+  padding: 5px 2px 2px 2px;
   margin: auto;
   margin-top: 10px;
   display: flex;

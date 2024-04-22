@@ -1,6 +1,33 @@
+let coo = document.cookie;
+console.log(coo);
 var addNote = document.getElementById("add-note");
 var mainArt = document.getElementsByClassName("mainDiv")[0];
 addNote.addEventListener("click", addNotes);
+
+function showCookies() {
+  let cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    if (cookies[i] == "") continue;
+    let cookie = cookies[i].trim().split("=")[0];
+    let value = cookies[i].trim().split("=")[1];
+    let note = document.createElement("div");
+    note.className = "noteDiv";
+    note.innerHTML =
+      `<div>
+    <div style='display: flex;'>
+  <p class="title">` +
+      cookie +
+      `</p>
+    <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
+    </div>
+  <pre class="text">` +
+      value +
+      `</pre>
+</div>`;
+    document.getElementsByClassName("mainDiv")[0].appendChild(note);
+  }
+}
+showCookies();
 let sss = true;
 
 document.getElementById("menu-img").addEventListener("click", function () {
@@ -22,27 +49,36 @@ function addNotes() {
   if (document.getElementById("menu-inp").value == "") {
     addTitle();
   } else {
-    let text = document.getElementById("menu-inp").value;
-    let title = document.getElementById("title-inp").value;
-    let note = document.createElement("div");
-    note.className = "noteDiv";
-    note.innerHTML =
-      `<div>
+    if (document.getElementById("title-inp").value == "") {
+      alert("Please Enter Title");
+    } else {
+      let text = document.getElementById("menu-inp").value;
+      let title = document.getElementById("title-inp").value;
+      let note = document.createElement("div");
+      note.className = "noteDiv";
+      note.innerHTML =
+        `<div>
       <div style='display: flex;'>
     <p class="title">` +
-      title +
-      `</p>
+        title +
+        `</p>
       <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
       </div>
     <pre class="text">` +
-      text +
-      `</pre>
+        text +
+        `</pre>
   </div>`;
-    mainArt.appendChild(note);
-    document.getElementById("menu-inp").value = "";
-    document.getElementById("title-inp").value = "";
+      mainArt.appendChild(note);
+      document.cookie =
+        title + "=" + text + "; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;";
+      document.getElementById("menu-inp").value = "";
+      document.getElementById("title-inp").value = "";
+      let cookies = document.cookie;
+      console.log(cookies);
+    }
   }
 }
+
 document.getElementById("menu-inp").addEventListener("focus", addTitle);
 function addTitle() {
   let title = document.getElementById("title-inp");
@@ -64,7 +100,18 @@ function removeTitle() {
 }
 
 function deleteNote(e) {
+  let cookList = [];
   e.parentElement.parentElement.parentElement.remove();
+
+  // Get all the child elements of the parent element of 'e'
+  const childElements =
+    e.parentElement.parentElement.parentElement.getElementsByClassName(
+      "title"
+    )[0];
+
+  document.cookie =
+    childElements.textContent +
+    "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 let asideDiv = document.getElementsByClassName("aside-div");
@@ -98,7 +145,7 @@ function setTheme(theme) {
     document.getElementById("body").style.backgroundColor = "#242424";
     if (window.innerWidth >= 768) {
       document.getElementsByClassName("art-main")[0].style.backgroundColor =
-        "#242424";
+        "#181818";
     }
 
     try {
