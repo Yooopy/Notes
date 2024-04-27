@@ -16,15 +16,21 @@ function showCookies() {
       `<div>
     <div style='display: flex;'>
   <p class="title">` +
-      cookie +
+      "cookie" +
       `</p>
     <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
     </div>
   <pre class="text">` +
-      value +
+      "value" +
       `</pre>
 </div>`;
     document.getElementsByClassName("mainDiv")[0].appendChild(note);
+    const coo = document.getElementsByClassName("title");
+    const lastCoo = coo[coo.length - 1];
+    lastCoo.textContent = cookie;
+    const tee = document.getElementsByClassName("text");
+    const lastTee = tee[tee.length - 1];
+    lastTee.textContent = value;
   }
 }
 showCookies();
@@ -63,15 +69,21 @@ function addNotes() {
         `<div>
       <div style='display: flex;'>
     <p class="title">` +
-        title +
+        "title" +
         `</p>
       <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
       </div>
     <pre class="text">` +
-        text +
+        "text" +
         `</pre>
   </div>`;
       mainArt.appendChild(note);
+      const titles = document.getElementsByClassName("title");
+      const lastTitle = titles[titles.length - 1];
+      lastTitle.textContent = title;
+      const texts = document.getElementsByClassName("text");
+      const lastText = texts[texts.length - 1];
+      lastText.textContent = text;
       document.cookie =
         title + "=" + text + "; expires=Thu, 18 Dec 2999 12:00:00 UTC; path=/;";
       document.getElementById("menu-inp").value = "";
