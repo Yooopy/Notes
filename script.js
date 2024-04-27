@@ -5,33 +5,62 @@ var mainArt = document.getElementsByClassName("mainDiv")[0];
 addNote.addEventListener("click", addNotes);
 
 function showCookies() {
-  let cookies = document.cookie.split(";");
-  for (let i = 0; i < cookies.length; i++) {
-    if (cookies[i] == "") continue;
-    let cookie = cookies[i].trim().split("=")[0];
-    let value = cookies[i].trim().split("=")[1];
+  // Convert the localStorage keys to an array and sort them
+  let keys = Object.keys(localStorage).sort();
+
+  // Iterate over the sorted keys and create the titles divs
+  for (let key of keys) {
+    let value = localStorage.getItem(key);
     let note = document.createElement("div");
     note.className = "noteDiv";
     note.innerHTML =
       `<div>
-    <div style='display: flex;'>
-  <p class="title">` +
-      "cookie" +
+      <div style='display: flex;'>
+    <p class="title">` +
+      key +
       `</p>
-    <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
-    </div>
-  <pre class="text">` +
-      "value" +
-      `</pre>
-</div>`;
+      <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
+      </div>
+    <p class="text">` +
+      value +
+      `</p>
+  </div>`;
     document.getElementsByClassName("mainDiv")[0].appendChild(note);
-    const coo = document.getElementsByClassName("title");
-    const lastCoo = coo[coo.length - 1];
-    lastCoo.textContent = cookie;
-    const tee = document.getElementsByClassName("text");
-    const lastTee = tee[tee.length - 1];
-    lastTee.textContent = value;
+    const titles = document.getElementsByClassName("title");
+    const lastTitle = titles[titles.length - 1];
+    lastTitle.textContent = key;
+    const texts = document.getElementsByClassName("text");
+    const lastText = texts[texts.length - 1];
+    lastText.textContent = value;
   }
+
+  //   let cookies = document.cookie.split(";");
+  //   for (let i = 0; i < cookies.length; i++) {
+  //     if (cookies[i] == "") continue;
+  //     let cookie = String(cookies[i].trim().split("=")[0]);
+  //     let value = String(cookies[i].trim().split("=")[1]);
+  //     let note = document.createElement("div");
+  //     note.className = "noteDiv";
+  //     note.innerHTML =
+  //       `<div>
+  //     <div style='display: flex;'>
+  //   <p class="title">` +
+  //       "cookie" +
+  //       `</p>
+  //     <img onclick='deleteNote(this)' src='./assets/images/trash-bin.png' style='height: 20px; width: 20px; margin: 15px 5px 0px auto'>
+  //     </div>
+  //   <p class="text">` +
+  //       "value" +
+  //       `</p>
+  // </div>`;
+  //     document.getElementsByClassName("mainDiv")[0].appendChild(note);
+  //     const coo = document.getElementsByClassName("title");
+  //     const lastCoo = coo[coo.length - 1];
+  //     lastCoo.textContent = cookie;
+  //     const tee = document.getElementsByClassName("text");
+  //     const lastTee = tee[tee.length - 1];
+  //     lastTee.textContent = value;
+  //   }
 }
 showCookies();
 let sss = true;
@@ -61,8 +90,9 @@ function addNotes() {
     if (document.getElementById("title-inp").value == "") {
       alert("Please Enter Title");
     } else {
-      let text = document.getElementById("menu-inp").value;
-      let title = document.getElementById("title-inp").value;
+      let text = String(document.getElementById("menu-inp").value);
+      let title = String(document.getElementById("title-inp").value);
+      localStorage.setItem(title, text);
       let note = document.createElement("div");
       note.className = "noteDiv";
       note.innerHTML =
@@ -119,14 +149,15 @@ function deleteNote(e) {
   e.parentElement.parentElement.parentElement.remove();
 
   // Get all the child elements of the parent element of 'e'
-  const childElements =
+  const title =
     e.parentElement.parentElement.parentElement.getElementsByClassName(
       "title"
     )[0];
+  localStorage.removeItem(title.textContent);
 
-  document.cookie =
-    childElements.textContent +
-    "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  // document.cookie =
+  //   childElements.textContent +
+  //   "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 let asideDiv = document.getElementsByClassName("aside-div");
@@ -191,5 +222,20 @@ const slement = document.querySelectorAll(".title");
 slement.forEach((element) => {
   if (element.textContent === "theme") {
     element.parentElement.parentElement.parentElement.remove();
-  }
+  } else if (element.textContent === "key") {
+    element.parentElement.parentElement.parentElement.remove();
+  } else if (element.textContent === "getItem") {
+    element.parentElement.parentElement.parentElement.remove();
+  } else if (element.textContent === "setItem") {
+    element.parentElement.parentElement.parentElement.remove();
+  } else if (element.textContent === "removeItem") {
+    element.parentElement.parentElement.parentElement.remove();
+  } else if (element.textContent === "clear") {
+    element.parentElement.parentElement.parentElement.remove();
+  } else if (element.textContent === "length") {
+    element.parentElement.parentElement.parentElement.remove();
+  } // else if (element.textContent === "0") {
+  //   element.parentElement.parentElement.parentElement.remove();
+  // }
 });
+// localStorage.clear();
