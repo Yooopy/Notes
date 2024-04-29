@@ -159,6 +159,7 @@ header {
   font-style: bold;
   outline: none;
   transition: all 0.3s ease;
+  z-index: 1000;
 }
 #add-note:hover {
   transform: scale(1.2);
